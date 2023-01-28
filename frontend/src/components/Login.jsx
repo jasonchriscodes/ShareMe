@@ -7,7 +7,8 @@ import logo from "../assets/logowhite.png";
 
 const Login = () => {
   const responseGoogle = (response) => {
-    console.log(response);
+    localStorage.setItem("user", JSON.stringify(response.profileObj));
+    const { name, googleId, imageUrl } = response.profileObj;
   };
   return (
     <div className="flex justify-start items-center flex-col h-screen">
@@ -38,7 +39,7 @@ const Login = () => {
                   Sign in with google
                 </button>
               )}
-              onSuccess={responseGoogle}       
+              onSuccess={responseGoogle}
               onError={responseGoogle}
               cookiePolicy="single_host_origin"
             />
