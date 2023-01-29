@@ -5,12 +5,15 @@ import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
 import { client } from "../client";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate();
   const responseGoogle = (response) => {
-    localStorage.setItem("user", JSON.stringify(response.profileObj));
-    const { name, googleId, imageUrl } = response.profileObj;
+    const decodedHeader = jwt_decode(response.credential);
+    console.log(decodedHeader);
+    localStorage.setItem("user", JSON.stringify(decodedHeader));
+    const { name, googleId, imageUrl } = decodedHeader;
 
     const doc = {
       _id: googleId,
