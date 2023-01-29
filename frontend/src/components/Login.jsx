@@ -13,10 +13,10 @@ const Login = () => {
     const decodedHeader = jwt_decode(response.credential);
     console.log(decodedHeader);
     localStorage.setItem("user", JSON.stringify(decodedHeader));
-    const { name, googleId, imageUrl } = decodedHeader;
+    const { name, sub, imageUrl } = decodedHeader;
 
     const doc = {
-      _id: googleId,
+      _id: sub,
       _type: "user",
       userName: name,
       image: imageUrl,
