@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
+import { client } from "../client";
 
 const Login = () => {
+  const navigate = useNavigate();
   const responseGoogle = (response) => {
     localStorage.setItem("user", JSON.stringify(response.profileObj));
     const { name, googleId, imageUrl } = response.profileObj;
@@ -16,6 +18,11 @@ const Login = () => {
       userName: name,
       image: imageUrl,
     };
+
+    // create new doc if not exist in database
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true }); // if response google successfull, redirect to home page and user created in sanity dashboard
+    });
   };
   return (
     <div className="flex justify-start items-center flex-col h-screen">
