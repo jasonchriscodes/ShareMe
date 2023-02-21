@@ -60,6 +60,15 @@ const Sidebar = (user, closeToggle) => {
           ))}
         </div>
       </div>
+      {user && (
+        <Link to={`user-profile/${user._id}`} className="">
+          <img
+            src={user.image}
+            className="w-10 h-10 rounded-full"
+            alt="user-profile"
+          />
+        </Link>
+      )}
     </div>
   );
 };
