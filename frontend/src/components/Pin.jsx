@@ -12,9 +12,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const [savingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
-  const alreadySaved = save?.filter(
+  const alreadySaved = !!(save?.filter(
     (item) => item.postedBy._id === user.googleId
-  );
+  )).length;
 
   return (
     <div className="m-2">
@@ -46,11 +46,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 </a>
               </div>
             </div>
-            {alreadySaved?.length !== 0 ? (
-              <button>Saved</button>
-            ) : (
-              <button>Save</button>
-            )}
+            {alreadySaved ? <button>Saved</button> : <button>Save</button>}
           </div>
         )}
       </div>
