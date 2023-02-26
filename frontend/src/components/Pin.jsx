@@ -7,11 +7,14 @@ import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import { urlFor, client } from "../client";
 import { fetchUser } from "../utils/fetchUser";
 
-const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
+const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const [postHovered, setPostHovered] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
+  const alreadySaved = save?.filter(
+    (item) => item.postedBy._id === user.googleId
+  );
 
   return (
     <div className="m-2">
@@ -43,6 +46,11 @@ const Pin = ({ pin: { postedBy, image, _id, destination } }) => {
                 </a>
               </div>
             </div>
+            {alreadySaved?.length !== 0 ? (
+              <button>Saved</button>
+            ) : (
+              <button>Save</button>
+            )}
           </div>
         )}
       </div>
