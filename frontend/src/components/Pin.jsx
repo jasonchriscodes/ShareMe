@@ -8,14 +8,39 @@ import { urlFor, client } from "../client";
 import { fetchUser } from "../utils/fetchUser";
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
-  console.log(save);
   const [postHovered, setPostHovered] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
   const navigate = useNavigate();
   const user = fetchUser();
-  const alreadySaved = !!save?.filter(
-    (item) => item.postedBy._id === user.googleId
-  )?.length;
+
+  console.log(save?._id);
+  const alreadySaved = !!save?.filter((item) => item.postedBy._id === user.sub)
+    ?.length;
+
+  const savePin = (id) => {
+    if (!alreadySaved) {
+      setSavingPost(true);
+
+      client
+        .patch(id)
+        .setIfMissing({ save: [] })
+        .insert("after", "save[-1]", [
+          {
+            _key: uuidv4(),
+            userId: user.sub,
+            postedBy: {
+              _type: "postedBy",
+              _ref: user.sub,
+            },
+          },
+        ])
+        .commit()
+        .then(() => {
+          window.location.reload();
+          setSavingPost(false);
+        });
+    }
+  };
 
   return (
     <div className="m-2">
@@ -55,6 +80,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 </button>
               ) : (
                 <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    savePin(_id);
+                  }}
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outlined-none"
                 >
