@@ -30,6 +30,7 @@ const CreatePin = ({ user }) => {
         <div className="bg-secondaryColor p-3 flex flex-0.7 w-full">
           <div className="flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
             {loading && <Spinner />}
+            {wrongImageType && <p>Wrong image type</p>}
           </div>
         </div>
       </div>
