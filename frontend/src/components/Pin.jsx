@@ -36,6 +36,14 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
     }
   };
 
+  const deletePin = (id) => {
+    client
+    .delete(id)
+    .then(() => {
+      window.location.reload();
+    })
+  }
+
   return (
     <div className="m-2">
       <div
@@ -97,6 +105,18 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                       {destination.length > 20 ? destination.slice(8,20) : destination.slice(8)}
                     </a>
                   )} 
+                  {postedBy?._id === user.sub && (
+                    <button 
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deletePin(_id);
+                    }}
+                    className="bg-white p-2 opacity-70 hover:opacity-100 text-dark font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outlined-none"
+                    >
+                      <AiTwotoneDelete/>
+                    </button>
+                  )}
             </div>
           </div>
         )}
