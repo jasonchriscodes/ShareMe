@@ -64,6 +64,12 @@ const PinDetail = ({ user }) => {
             {pinDetail.destination}
           </a>
         </div>
+        <div>
+          <h1 className="text-4xl font-bold break-words mt-3">
+            {pinDetail.title}
+          </h1>
+          <p className="mt-3">{pinDetail.about}</p>
+        </div>
       </div>
     </div>
   );
