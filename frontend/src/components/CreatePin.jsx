@@ -115,6 +115,43 @@ const CreatePin = ({ user }) => {
               <p className="font-bold">{user.userName}</p>
             </div>
           )}
+          <input
+            type="text"
+            value={about}
+            onchange={(e) => setAbout(e.target.value)}
+            placeholder="What is your pin about"
+            className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
+          />
+          <input
+            type="text"
+            value={destination}
+            onchange={(e) => setDestination(e.target.value)}
+            placeholder="Add destination Link"
+            className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
+          />
+          <div className="flex flex-col">
+            <div>
+              <p className="mb-2 font-semibold text-lg sm:text-xl">
+                Choose Pin Category
+              </p>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                className="outline-none w-4/5 text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
+              >
+                <option value="other" className="bg-white">
+                  Select Category
+                </option>
+                {categories.map((category) => (
+                  <option
+                    className="text-base border-0 outline-none capitalize bg-white text-black"
+                    value={category.name}
+                  >
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
