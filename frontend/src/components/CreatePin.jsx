@@ -131,7 +131,7 @@ const CreatePin = ({ user }) => {
           <input
             type="text"
             value={title}
-            onchange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Add your title here"
             className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
           />
@@ -148,14 +148,14 @@ const CreatePin = ({ user }) => {
           <input
             type="text"
             value={about}
-            onchange={(e) => setAbout(e.target.value)}
+            onChange={(e) => setAbout(e.target.value)}
             placeholder="What is your pin about"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
           />
           <input
             type="text"
             value={destination}
-            onchange={(e) => setDestination(e.target.value)}
+            onChange={(e) => setDestination(e.target.value)}
             placeholder="Add destination Link"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
           />
