@@ -36,7 +36,20 @@ const PinDetail = ({ user }) => {
 
   if (!pinDetail) return <Spinner message="Loading pin..." />;
 
-  return <div>PinDetail</div>;
+  return (
+    <div
+      className="flex xl:flex-row flex-col m-auto bg-white"
+      style={{ maxWidth: "1500px", borderRadius: "32px" }}
+    >
+      <div className="flex justify-center items-center md:items-start flex-initial">
+        <img
+          src={pinDetail?.image && urlFor(pinDetail.image).url()}
+          alt="user-post"
+          className="rounded-t-3xl rounded-b-lg"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default PinDetail;
