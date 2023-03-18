@@ -85,7 +85,7 @@ const PinDetail = ({ user }) => {
         </Link>
         <h2 className="mt-5 text-2xl">Comments</h2>
         <div className="max-h-370 overflow-y-auto">
-          {pinDetail.comments.map((comment, i) => (
+          {pinDetail?.comments?.map((comment, i) => (
             <div
               className="flex gap-2 mt-5 items-center bg-white rounded-lg"
               key={i}
