@@ -34,6 +34,22 @@ const UserProfile = () => {
     });
   }, [userId]);
 
+  useEffect(() => {
+    if (text === "Created") {
+      const createdPinsQuery = userCreatedPinsQuery(userId);
+
+      client.fetch(createdPinsQuery).then((data) => {
+        setPins(data);
+      });
+    } else {
+      const savedPinsQuery = userSavedPinsQuery(userId);
+
+      client.fetch(savedPinsQuery).then((data) => {
+        setPins(data);
+      });
+    }
+  }, [text, userId]);
+
   const logout = () => {
     localStorage.clear();
 
