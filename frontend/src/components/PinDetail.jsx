@@ -117,7 +117,7 @@ const PinDetail = ({ user }) => {
               key={i}
             >
               <img
-                src="comment.postedBy.image"
+                src={comment.postedBy.image}
                 alt="user-profile"
                 className="w-10 h-10 rounded-full cursor-pointer"
               />
