@@ -105,6 +105,16 @@ const CreatePin = ({ user }) => {
             placeholder="Add your title here"
             className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
           />
+          {user && (
+            <div className="flex gap-2 my-2 items-center bg-white rounded-lg">
+              <img
+                src={user.image}
+                className="w-10 h-10 rounded-full"
+                alt="user-profile"
+              />
+              <p className="font-bold">{user.userName}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
