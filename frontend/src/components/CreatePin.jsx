@@ -97,6 +97,15 @@ const CreatePin = ({ user }) => {
             )}
           </div>
         </div>
+        <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
+          <input
+            type="text"
+            value={title}
+            onchange={(e) => setTitle(e.target.value)}
+            placeholder="Add your title here"
+            className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
+          />
+        </div>
       </div>
     </div>
   );
